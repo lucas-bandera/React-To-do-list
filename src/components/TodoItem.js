@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { MdCheckCircle, MdCancel } from 'react-icons/md'
+
 
 export class TodoItem extends Component {
     getStyle = (completed) => {
         return {
-            background: '#f4f4f4',
+            background: completed? '#78CDD7' : '#f4f4f4',
             padding: '10px',
             borderBottom: '1px #ccc dotted',
-            textDecoration: completed? 'line-through' : 'none'
+            textDecoration: completed? 'line-through' : 'none',
+            transition: 'background 0.5s ease',
         }
     }
 
@@ -16,14 +19,16 @@ export class TodoItem extends Component {
 
         return (
             <div style={this.getStyle(completed)}>
-                <p onDoubleClick={this.props.markComplete.bind(this, id)}>
+                <p onDoubleClick={this.props.markComplete.bind(this, id)} style={{ position: 'relative' }}>
                     <input type="checkbox" onChange={this.props.markComplete.bind(this, id)} checked={completed} />
                     {title}
 
-                    <button 
+                    {/* <button 
                         style={styles.btn}
                         onClick={this.props.delTodo.bind(this, id)}
-                    >x</button>
+                        className="brn-cancel"
+                    ></button> */}
+                    { completed? (<MdCheckCircle onClick={this.props.delTodo.bind(this, id)} className="check-ico" />) : (<MdCancel onClick={this.props.delTodo.bind(this, id)} className="cancel-ico" />)}
                 </p>
             </div>
 
@@ -37,16 +42,16 @@ TodoItem.propTypes = {
     delTodo: PropTypes.func.isRequired,
 }
 
-const styles = {   
-    btn: {
-        background: '#f00',
-        color: '#fff',
-        border: 'none',
-        padding: '5px 10px',
-        borderRadius: '50%',
-        cursor: 'pointer',
-        float: 'right',
-    }
-}
+// const styles = {   
+//     btn: {
+//         background: '#f00',
+//         color: '#fff',
+//         border: 'none',
+//         padding: '5px 10px',
+//         borderRadius: '50%',
+//         cursor: 'pointer',
+//         float: 'right',
+//     }
+// }
 
 export default TodoItem

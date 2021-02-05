@@ -1,0 +1,29 @@
+@import ./vars
+
+
+.btn 
+  display: inline-block
+  border: none
+  background: #555
+  color: #fff
+  padding: 7px 20px
+  cursor: pointer
+  transition: background 0.5s ease
+
+  &.btn-submit
+      background: $col-2
+
+.cancel-ico, .check-ico
+  color: $col-4
+  float: right
+  font-size: 25px
+  cursor: pointer
+  position: absolute
+  top: 0
+  right: 0
+
+.cancel-ico
+  color: red
+
+input[type='checkbox']
+  margin-right: 15px
