@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
 import axios from 'axios'
  
 import Todos from './components/Todos.js'
@@ -10,9 +9,11 @@ import Header from './components/layout/Header'
 
 export default class App extends Component {
   state = {
-    todos: []
+    todos: [],
+    placeholderId: 0
   }
 
+// GET all todos from json placeholder as soons as component mounts
   componentDidMount() {
     axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
     .then(res => {
@@ -30,7 +31,7 @@ export default class App extends Component {
       return todo
     }) 
   })
-  } 
+} 
 
 // Delete Todo
   delTodo = (id) => {
@@ -40,34 +41,39 @@ export default class App extends Component {
     .catch(err => console.log(err))
   }
 
-  addTodo = (title) => {    
+
+// Add new Todo
+  addTodo = (title) => {
     axios.post('https://jsonplaceholder.typicode.com/todos', {
       title,
       completed: false
     })
-    .then(res => this.setState({ todos: [...this.state.todos, res.data ] }))
+    .then(
+      (res) => {
+        const newTodo = res.data
+        let placeholderId = this.state.placeholderId
+        newTodo.id += placeholderId;
+        
+        this.setState({ todos: [...this.state.todos, newTodo ], placeholderId: placeholderId  + 1})
+    }
+      )
     .catch(err => console.log(err))
   }
 
 
   render() {
     return (
-      <Router>
 
       <div className="App">
         <div className="container">
           <Header />
-            <Route path="/" exact render={props => (
-              <>
+          
                 <AddTodo addTodo={this.addTodo} />
                 <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
-              </>
-            )} />
-            <Route path="/about" component={About} />            
+                       
         </div>
 
       </div>
-      </Router>
 
     )
   }

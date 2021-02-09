@@ -20,7 +20,7 @@ export class TodoItem extends Component {
 
         return (
             <div className="todo-item"  style={this.getStyle(completed)}>
-                <p onDoubleClick={this.props.markComplete.bind(this, id)} style={{ position: 'relative' }}>
+                <p>
 
                     { 
                         completed ? 
@@ -28,7 +28,7 @@ export class TodoItem extends Component {
                         (<MdCheckCircle onClick={this.props.markComplete.bind(this, id)} className="check-ico" />)
                     }
 
-                    {title}
+                        {title}
 
                    { completed && <FiTrash2 className="delete-ico" onClick={this.props.delTodo.bind(this, id)} />}
                 </p>

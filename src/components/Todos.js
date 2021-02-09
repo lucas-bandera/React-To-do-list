@@ -6,9 +6,13 @@ import TodoItem from './TodoItem.js'
 
 export default class Todos extends Component {
     render() {
-        return this.props.todos.map(todo => (
-            <TodoItem key={todo.id} todo={todo} markComplete={this.props.markComplete} delTodo={this.props.delTodo} />
-        ))
+        return (
+            <div className="todo-list">
+               { this.props.todos.map(todo => (
+                    <TodoItem key={todo.id} todo={todo} markComplete={this.props.markComplete} delTodo={this.props.delTodo} />
+                ))}
+            </div>
+        )
     }
 }
 

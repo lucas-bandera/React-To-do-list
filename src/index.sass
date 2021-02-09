@@ -1,3 +1,7 @@
+@import ./assets/sass/vars
+@import ./assets/sass/scrollbar
+
+
 html, body, * 
   margin: 0
   padding: 0
@@ -12,7 +16,8 @@ body
   justify-content: center
   min-height: 100vh
   background-color: #8dceb4
-  background: linear-gradient(to top right, #73c5a4, #8dceb4)
+  background-color: linear-gradient(to top right, #73c5a4, #8dceb4)
+  background-image: url("/assets/img/60-lines.png")
   overflow-x: hidden
 
 .container 
@@ -21,10 +26,69 @@ body
   margin: auto    
   min-height: 80vh
   width: 90vw
-  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.3))
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.1))
   border-radius: 30px
   overflow: hidden
+  position: relative
 
-.btn:hover 
-  background: #666
+  .text-input
+    font-size: 18px
+    padding: 8px
+
+  .btn 
+    display: inline-block
+    border: none
+    color: #fff
+    padding: 7px 20px
+    cursor: pointer
+    transition: background 0.5s ease
+
+    &.btn-submit
+        background: $col-2
+
+        &:hover 
+          background : #000
+
+  .todo-list
+    max-height: 80%
+    overflox-y: scroll    
+    position: absolute
+    left: 0
+    overflow-y: scroll
+    width: 100%
+    padding: 0 15px
+    padding-bottom: 20px
+      
+
+
+  .todo-item
+    &:hover
+      background: rgba(255, 255, 255, 0.5)    
+
+    p
+      position: relative
+      padding: 0 30px
+
+  .cancel-ico, .check-ico, .delete-ico
+    color: $col-4
+    position: relative
+    top: -3px
+    left: 0
+    margin-right: 10px
+    font-size: 25px
+    cursor: pointer
+    position: absolute
+
+  .cancel-ico
+    color: #b83030
+
+  .delete-ico
+    font-size: 25px
+    left: auto
+    right: 0
+    background-color: #b83030
+    padding: 3px
+    color: #fff
+    border-radius: 50%
+    margin: 0
 
