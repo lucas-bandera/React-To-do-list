@@ -6,10 +6,24 @@ html, body, *
   color: inherit
   font-family: Arial, Helvetica, sans-serif
 
+body
+  display: flex
+  align-items: center
+  justify-content: center
+  min-height: 100vh
+  background-color: #8dceb4
+  background: linear-gradient(to top right, #73c5a4, #8dceb4)
+  overflow-x: hidden
+
 .container 
   padding: 0 1rem
   max-width: 1100px
-  margin: auto
+  margin: auto    
+  min-height: 80vh
+  width: 90vw
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.3))
+  border-radius: 30px
+  overflow: hidden
 
 .btn:hover 
   background: #666

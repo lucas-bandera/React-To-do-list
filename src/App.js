@@ -5,6 +5,7 @@ import axios from 'axios'
 import Todos from './components/Todos.js'
 import About from './pages/About'
 import AddTodo from './components/AddTodo.js'
+
 import Header from './components/layout/Header'
 
 export default class App extends Component {
@@ -64,6 +65,7 @@ export default class App extends Component {
             )} />
             <Route path="/about" component={About} />            
         </div>
+
       </div>
       </Router>
 

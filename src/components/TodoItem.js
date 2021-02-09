@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { MdCheckCircle, MdCancel } from 'react-icons/md'
+import { MdCheckCircle, MdCancel } from 'react-icons/md'  
+import { FiTrash2 } from 'react-icons/fi'
 
 
 export class TodoItem extends Component {
     getStyle = (completed) => {
         return {
-            background: completed? '#78CDD7' : '#f4f4f4',
-            padding: '10px',
+            padding: '15px 10px',
             borderBottom: '1px #ccc dotted',
             textDecoration: completed? 'line-through' : 'none',
-            transition: 'background 0.5s ease',
+            transition: '0.5s ease',
+            color: completed? 'rgba(0, 0, 0, 0.5)' : '#000',
         }
     }
 
@@ -18,17 +19,18 @@ export class TodoItem extends Component {
         const { id, title, completed } = this.props.todo;
 
         return (
-            <div style={this.getStyle(completed)}>
+            <div className="todo-item"  style={this.getStyle(completed)}>
                 <p onDoubleClick={this.props.markComplete.bind(this, id)} style={{ position: 'relative' }}>
-                    <input type="checkbox" onChange={this.props.markComplete.bind(this, id)} checked={completed} />
+
+                    { 
+                        completed ? 
+                        (<MdCancel onClick={this.props.markComplete.bind(this, id)} className="cancel-ico" />) :
+                        (<MdCheckCircle onClick={this.props.markComplete.bind(this, id)} className="check-ico" />)
+                    }
+
                     {title}
 
-                    {/* <button 
-                        style={styles.btn}
-                        onClick={this.props.delTodo.bind(this, id)}
-                        className="brn-cancel"
-                    ></button> */}
-                    { completed? (<MdCheckCircle onClick={this.props.delTodo.bind(this, id)} className="check-ico" />) : (<MdCancel onClick={this.props.delTodo.bind(this, id)} className="cancel-ico" />)}
+                   { completed && <FiTrash2 className="delete-ico" onClick={this.props.delTodo.bind(this, id)} />}
                 </p>
             </div>
 
